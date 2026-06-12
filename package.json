@@ -1,0 +1,36 @@
+{
+  "name": "walleta-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "web": "expo start --web",
+    "android": "expo start --android",
+    "ios": "expo start --ios"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "latest",
+    "@react-native-async-storage/async-storage": "latest",
+    "@tanstack/react-query": "latest",
+    "expo": "latest",
+    "expo-constants": "latest",
+    "expo-linking": "latest",
+    "expo-router": "latest",
+    "expo-status-bar": "latest",
+    "firebase": "latest",
+    "nativewind": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-native": "latest",
+    "react-native-reanimated": "latest",
+    "react-native-safe-area-context": "latest",
+    "react-native-screens": "latest",
+    "react-native-web": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "tailwindcss": "^3.4.17",
+    "typescript": "latest"
+  }
+}

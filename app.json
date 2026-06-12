@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Walleta app",
+    "slug": "walleta-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "walleta",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"]
+  }
+}
