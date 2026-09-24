@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   android:
@@ -46,3 +46,17 @@ jobs:
           name: Gokmen-Berber-APK
           path: gokmenberber/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Publish shareable APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk ./Gokmen-Berber.apk
+          if gh release view gokmen-berber-v1.0.0 >/dev/null 2>&1; then
+            gh release upload gokmen-berber-v1.0.0 ./Gokmen-Berber.apk --clobber
+          else
+            gh release create gokmen-berber-v1.0.0 ./Gokmen-Berber.apk \
+              --target gokmen-berber-apk \
+              --title 'Gökmen Berber - Android APK' \
+              --notes 'Gökmen Berber kişisel randevu defteri Android APK. Bu sürüm yerel cihazda kayıt tutar; düzenli yedek alın.'
+          fi
