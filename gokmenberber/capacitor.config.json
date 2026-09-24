@@ -1,0 +1,8 @@
+{
+  "appId": "com.gokmenberber.defter",
+  "appName": "Gökmen Berber",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#101B2A"
+  }
+}
