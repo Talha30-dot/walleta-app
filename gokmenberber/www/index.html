@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#101B2A">
+  <meta name="description" content="Gökmen Berber için kişisel, çevrimdışı randevu defteri">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+:root{color-scheme:dark;--bg:#101b2a;--surface:#19283b;--surface2:#203148;--stroke:#304156;--text:#f5f6f4;--muted:#9fb0bf;--faint:#73889a;--mint:#c0e4b9;--mint-dark:#243d35;--amber:#e7c58e;--r:18px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-synthesis:none}*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);-webkit-tap-highlight-color:transparent}body.modal-open{overflow:hidden}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--mint);outline-offset:3px}button:not(:focus-visible){outline:0}.app-shell{max-width:580px;margin:0 auto;min-height:100dvh;padding:env(safe-area-inset-top) 20px 0}.topbar{height:91px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2a384b}.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:46px;height:46px;display:grid;place-items:center;border:1px solid #556958;border-radius:13px;color:var(--mint);background:#223729}.brand-mark svg{width:27px}.brand-overline{font-size:9px;letter-spacing:2.7px;font-weight:800;color:var(--mint);margin-bottom:3px}.brand-name{font-size:17px;letter-spacing:.45px;font-weight:800}.brand-name span{font-weight:400;color:#d2e0d0}.icon-button{border:1px solid #33465b;background:#1c2b40;color:#c8d2da;border-radius:14px;width:44px;height:44px;display:grid;place-items:center}.icon-button svg{width:22px}.page-eyebrow{display:flex;align-items:center;gap:9px;margin-top:26px;color:#9eb2bf;font-size:10px;font-weight:800;letter-spacing:2.1px}.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 3px #c0e4b91a;flex:none}.eyebrow-line{height:1px;background:#2b3b50;flex:1}.clock{font-variant-numeric:tabular-nums;letter-spacing:1.2px;color:var(--muted)}.hero{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:10px}.date-controls{display:flex;justify-content:space-between;align-items:center;width:100%}.circle-nav{width:47px;height:47px;border-radius:50%;background:#1a293c;border:1px solid #34465b;color:#dbe3e8;display:grid;place-items:center;flex:none}.circle-nav svg{width:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.date-display{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;border:0;color:inherit;background:transparent;padding:0 6px}.date-weekday{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:3px}.date-big{white-space:nowrap;font-weight:800;font-size:clamp(30px,8vw,44px);letter-spacing:-1.4px;display:flex;align-items:center;gap:8px}.date-big svg{width:18px;fill:none;stroke:var(--mint);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.date-year{font-size:13px;color:#91a6b5;font-weight:500}.today-btn{color:var(--mint);border:1px solid #42624e;background:#253c32;border-radius:99px;font-size:12px;padding:8px 13px;font-weight:700}.today-btn span{margin-left:4px}.visually-hidden-date{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:31px}.stat-card{border:1px solid #2f4156;background:#19293c;border-radius:16px;min-width:0;padding:16px 15px 14px;min-height:120px}.stat-label{font-size:9px;letter-spacing:1.8px;color:#b5c0cb;font-weight:800}.stat-value{font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-2px;margin-top:9px;font-variant-numeric:tabular-nums}.stat-foot{font-size:11px;color:#91a5b5;margin-top:5px}.accent-card{background:#293d33;border-color:#4d6a50}.accent-card .stat-label,.accent-card .stat-value{color:#c9e8c4}.accent-card .stat-foot{color:#b2cbaa}.appointments-section{margin-top:37px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-bottom:19px}.section-eyebrow{font-size:9px;color:var(--mint);font-weight:800;letter-spacing:2.4px;margin-bottom:8px}.section-head h1{font-size:21px;letter-spacing:-.6px;margin:0;font-weight:750}.count-badge{background:#223349;border:1px solid #34465a;color:#b3c2cd;border-radius:100px;padding:7px 10px;font-size:11px;white-space:nowrap}.appointment-list{display:flex;flex-direction:column;gap:12px}.appointment-card{position:relative;border-radius:17px;background:var(--surface);border:1px solid #314358;overflow:hidden;padding:16px 15px 0;transition:background .15s;cursor:pointer}.appointment-card:before{content:"";position:absolute;top:14px;bottom:45px;left:0;width:3px;background:#d8bd8c}.appointment-card.done:before{background:#a5d39d}.appointment-card.cancelled{opacity:.54}.appointment-card.cancelled:before{background:#7c8c9a}.appointment-top{display:flex;gap:14px;align-items:center;min-height:46px}.time-block{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:59px}.appointment-time{font-size:21px;font-variant-numeric:tabular-nums;font-weight:800;letter-spacing:-.5px}.duration-label{font-size:10px;letter-spacing:1px;color:#8598aa;font-weight:700}.customer{min-width:0;flex:1}.customer h3{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 0 5px;font-weight:700}.customer p{margin:0;font-size:12px;color:#a6b5c1}.note-dot{margin:0 3px;color:var(--mint)}.status-dot{width:8px;height:8px;border-radius:50%;flex:none;background:#dfc28d}.status-dot.done{background:#abdaa3}.status-dot.cancelled{background:#8998a4}.card-note{border-top:1px solid #304054;margin:15px 0 0;padding-top:12px;color:#c0cdd5;font-size:12px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.appointment-footer{margin-top:13px;min-height:47px;border-top:1px solid #2c3c50;display:flex;align-items:center;justify-content:space-between;gap:5px}.status-label{display:inline-flex;align-items:center;gap:6px;font-size:9px;letter-spacing:1px;font-weight:800;color:#e3c793}.status-label.done{color:#b5e2ad}.status-label.cancelled{color:#9eabb7}.mini-dot{width:5px;height:5px;border-radius:50%;background:currentColor}.appointment-controls{display:flex;align-items:center;gap:7px}.small-status-btn{border:1px solid #48624d;background:#293e35;color:#c4e6bc;border-radius:8px;font-size:11px;font-weight:800;padding:8px 9px;white-space:nowrap}.undo-btn{background:#26364a;color:#cedbe3;border-color:#3b526c}.edit-btn,.phone-link{width:32px;height:32px;display:grid;place-items:center;border:1px solid #3b4d60;background:#213147;color:#dce5e9;border-radius:9px}.edit-btn svg,.phone-link svg{width:17px;height:17px}.empty-state{border:1px dashed #3a4b5c;border-radius:18px;min-height:275px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:23px 24px;background:#172536}.empty-graphic{width:92px;height:92px;color:#698477}.empty-graphic svg{width:100%;height:100%}.empty-state h3{font-size:18px;margin:8px 0 5px}.empty-state p{color:#97a9b9;font-size:13px;line-height:1.55;margin:0;max-width:230px}.empty-add{margin-top:18px;border-radius:10px;border:1px solid #547256;background:#293e33;color:var(--mint);padding:11px 14px;font-size:12px;font-weight:800}.bottom-space{height:115px}.bottom-action{position:fixed;bottom:0;left:0;right:0;max-width:580px;margin:auto;padding:12px 20px max(18px,env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent 0%,#101b2a 17%,#101b2a 100%);z-index:10}.primary-button{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:58px;border:0;border-radius:14px;background:var(--mint);color:#15291f;font-size:13px;font-weight:900;letter-spacing:.5px;box-shadow:0 5px 24px #b9e5ba18}.primary-button svg{width:22px;height:22px}.overlay[hidden],[hidden]{display:none!important}.overlay{position:fixed;inset:0;z-index:30;display:flex;justify-content:center;align-items:flex-end}.sheet-backdrop{position:absolute;inset:0;background:#07101bc9;backdrop-filter:blur(4px)}.sheet{position:relative;z-index:1;width:100%;max-width:580px;max-height:calc(100dvh - 35px);background:#172537;border:1px solid #35475a;border-bottom:0;border-radius:23px 23px 0 0;box-shadow:0 -12px 80px #050d17a8;overflow-y:auto;overscroll-behavior:contain;padding:0 20px max(20px,env(safe-area-inset-bottom))}.sheet-grab{width:37px;height:4px;border-radius:5px;background:#536577;margin:11px auto 21px}.sheet-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}.sheet-kicker{font-size:9px;letter-spacing:2px;font-weight:900;color:var(--mint);margin-bottom:7px}.sheet-header h2{font-size:25px;letter-spacing:-.65px;margin:0}.close-btn{border:1px solid #3a4e62;background:#23354a;color:#e5ebef;width:35px;height:35px;border-radius:10px;font-size:26px;line-height:1}.form-fields{display:flex;flex-direction:column;gap:15px}.field{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}.field>span{font-size:11px;letter-spacing:.3px;font-weight:750;color:#c9d5dd}.field strong{color:var(--mint)}.field small{color:#91a5b4;font-size:10px;font-weight:400}.field input,.field select,.field textarea{width:100%;border:1px solid #3c5064;border-radius:11px;background:#203248;color:#f8faf9;padding:13px 12px;min-height:49px;outline:0;font-size:15px;color-scheme:dark}.field input:focus,.field select:focus,.field textarea:focus{border-color:#a0caa0;box-shadow:0 0 0 2px #b9e8ad22}.field input::placeholder,.field textarea::placeholder{color:#71889c}.field textarea{resize:vertical;min-height:66px}.field-row{display:flex;gap:12px}.sheet-actions{display:flex;flex-direction:column;gap:11px;margin-top:19px}.sheet-actions .primary-button{height:53px}.secondary-button{border:1px solid #89595b;color:#e9b2b2;border-radius:11px;background:#462f39;padding:13px;font-size:12px;font-weight:750}.form-error{font-size:12px;line-height:1.4;color:#ffd8b7;background:#543736;border:1px solid #89574a;padding:12px;border-radius:10px}.settings-content{padding-bottom:12px}.settings-group-title{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--mint);margin-bottom:9px}.settings-description{color:#aebdca;font-size:13px;line-height:1.65;margin:0 0 19px}.settings-item{display:flex;width:100%;align-items:center;text-align:left;gap:13px;border:1px solid #36495d;background:#1e3045;color:var(--text);padding:13px 11px;border-radius:13px;margin-bottom:10px}.setting-icon{width:40px;height:40px;display:grid;place-items:center;background:#2a4539;border-radius:10px;color:var(--mint);font-size:24px;flex:none}.settings-item>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:4px}.settings-item strong{font-size:13px}.settings-item small{font-size:11px;color:#9bacbb;line-height:1.3}.item-arrow{color:#9bacbb;font-size:25px}.install-title{margin-top:30px}.outline-button{border:1px solid var(--mint);border-radius:12px;color:var(--mint);background:#2a4237;padding:13px;width:100%;font-size:13px;font-weight:800}.settings-note{display:flex;gap:10px;align-items:flex-start;margin-top:23px;color:#8ea3b3;font-size:11px;line-height:1.5}.settings-note .live-dot{margin-top:4px}.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom));transform:translate(-50%,15px);background:#d3eacc;color:#213326;border:1px solid #94c28a;border-radius:11px;max-width:min(92vw,520px);min-width:min(280px,80vw);padding:13px 15px;font-size:13px;font-weight:750;text-align:center;line-height:1.4;box-shadow:0 15px 40px #0008;opacity:0;pointer-events:none;transition:all .2s;z-index:50}.toast.visible{opacity:1;transform:translate(-50%,0)}.toast.error{background:#ffe0d2;color:#623b2c;border-color:#b97f65}@media(min-width:600px){.app-shell{border-left:1px solid #29374b;border-right:1px solid #29374b}.sheet{border-radius:22px 22px 0 0}.topbar{height:100px}}@media(max-width:355px){.app-shell{padding-left:13px;padding-right:13px}.brand-name{font-size:15px}.brand-mark{width:42px;height:42px}.stat-card{padding:13px 10px}.stat-label{font-size:8px}.stat-value{font-size:36px}.appointment-top{gap:10px}.customer h3{font-size:14px}.bottom-action{padding-left:13px;padding-right:13px}.field-row{gap:8px}.field input,.field select{padding:12px 8px}}
+
+/* V2 — Saatlik randevu defteri. */
+.schedule-tip{font-size:12px;color:#a8baca;line-height:1.5;margin:-6px 0 16px}
+.time-hint{font-size:11px;color:#97adbb;line-height:1.45;margin:-6px 0 0}
+.appointment-list{gap:9px}
+.slot-card{display:grid;grid-template-columns:60px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:12px;row-gap:0;align-items:center;width:100%;min-height:76px;padding:13px 13px 12px 14px;border:1px solid #34475a;border-radius:15px;background:#19283b;color:var(--text);text-align:left;position:relative;overflow:hidden;transition:border-color .15s,background .15s}
+.slot-card .slot-time{grid-row:1/3;grid-column:1;font-size:20px;font-weight:800;letter-spacing:-.7px;font-variant-numeric:tabular-nums;align-self:center}
+.slot-content{grid-row:1;grid-column:2;display:flex;flex-direction:column;gap:4px;min-width:0}
+.slot-name{display:block;font-size:15px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot-help{font-size:10px;color:#9aabba;line-height:1.3}
+.slot-tag{grid-row:1;grid-column:3;align-self:center;border-radius:100px;padding:6px 9px;font-size:10px;font-weight:900;letter-spacing:.65px}
+.slot-tag.available{background:#253d33;color:#bfe6b8;border:1px solid #42644b}
+.slot-tag.busy{background:#463b2d;color:#f3d39b;border:1px solid #715d3f}
+.slot-tag.completed{background:#253d33;color:#bfe6b8;border:1px solid #42644b}
+.slot-card.free{cursor:pointer;background:#142436;border-style:dashed;min-height:70px}
+.slot-card.free .slot-time{color:#d9e5ea}
+.slot-card.free .free-name{color:#c1cfd6;font-size:13px}
+.slot-card.free .slot-help{color:#8397a9}
+.slot-card.free .slot-plus{grid-column:3;grid-row:2;color:#bfe6b8;font-size:16px;justify-self:center;line-height:1}
+.slot-card.occupied{border-left:3px solid #d8ba81;cursor:pointer}
+.slot-card.finished{border-left-color:#a9d6a7}
+.slot-actions{grid-row:2;grid-column:2/4;display:flex;align-items:center;justify-content:flex-end;gap:7px;margin-top:10px;padding-top:9px;border-top:1px solid #304156}
+.slot-actions .edit-btn{width:auto;padding:0 10px;font-size:10px;font-weight:750}
+.slot-actions .small-status-btn{padding:8px 11px}
+.slot-actions .phone-link{flex:none}
+@media (max-width:355px){.slot-card{grid-template-columns:53px minmax(0,1fr) auto;column-gap:8px;padding:12px 9px}.slot-card .slot-time{font-size:18px}.slot-name{font-size:13px}.slot-tag{padding:5px 6px;font-size:9px}.slot-actions{gap:4px}.slot-actions .small-status-btn{padding:7px}}
+
+</style>
+  <title>Gökmen Berber • Randevu Defteri</title>
+  <script>
+/* Gökmen Berber — 09:00–22:00, 30 dakikalık randevu defteri mantığı. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  root.GokmenCore = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const OPEN = 9 * 60, LAST = 22 * 60, STEP = 30;
+  const statuses = ['pending', 'done', 'cancelled'];
+  const oldDurations = [15,30,45,60,90,120];
+  const pad = n => String(n).padStart(2,'0');
+  const formatTime = m => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+  const SLOT_TIMES = Object.freeze(Array.from({length: (LAST - OPEN) / STEP + 1}, (_, i) => formatTime(OPEN + i * STEP)));
+  function dateKey(d) { return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+  function parseDate(key) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(key || '')) return null;
+    const [y,m,d] = key.split('-').map(Number);
+    const out = new Date(y,m-1,d,12);
+    return out.getFullYear()===y && out.getMonth()===m-1 && out.getDate()===d ? out : null;
+  }
+  function shiftDate(key, offset) {
+    const d=parseDate(key);
+    if (!d) return key;
+    d.setDate(d.getDate()+offset);
+    return dateKey(d);
+  }
+  function minutes(time) {
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(time || '')) return NaN;
+    return Number(time.slice(0,2))*60+Number(time.slice(3,5));
+  }
+  function isSlot(time) { return SLOT_TIMES.includes(time); }
+  const cleanText = (s, max) => String(s == null ? '' : s).trim().slice(0,max);
+  function normalize(candidate) {
+    return {
+      id:cleanText(candidate.id,100), date:cleanText(candidate.date,10),time:cleanText(candidate.time,5),
+      name:cleanText(candidate.name,70),phone:cleanText(candidate.phone,24),notes:cleanText(candidate.notes,250),
+      // Eski sürümde daha uzun süreli kayıtlar bulunabilir; mevcut kayıtları değiştirme.
+      duration:oldDurations.includes(Number(candidate.duration)) ? Number(candidate.duration) : STEP,
+      status:statuses.includes(candidate.status) ? candidate.status : 'pending',
+      createdAt:cleanText(candidate.createdAt,40)
+    };
+  }
+  function conflicts(appointments,candidate,excludedId) {
+    const start=minutes(candidate.time),end=start+Number(candidate.duration||STEP);
+    return appointments.some(a=>a.id!==excludedId && a.date===candidate.date && a.status!=='cancelled' &&
+      start < minutes(a.time)+Number(a.duration||STEP) && minutes(a.time)<end);
+  }
+  function occupant(appointments,date,time) {
+    const start=minutes(time);
+    return appointments.find(a=>a.date===date && a.status!=='cancelled' &&
+      start < minutes(a.time)+Number(a.duration||STEP) && minutes(a.time)<start+STEP) || null;
+  }
+  function validate(appointments,draft,excludedId) {
+    const a=normalize(draft);
+    if (!a.name) return 'Müşterinin adını gir.';
+    if (!parseDate(a.date)) return 'Geçerli bir tarih seç.';
+    if (!isSlot(a.time)) return '09:00–22:00 arasında, yarım saatlik bir saat seç.';
+    // Yeni randevular yalnızca bir saat aralığı kullanır.
+    if (a.duration!==STEP) return 'Randevu için geçerli bir saat seç.';
+    if (a.status!=='cancelled' && conflicts(appointments,a,excludedId)) return 'Bu saat dolu. Lütfen boş bir saat seç.';
+    return null;
+  }
+  const sortAppointments = items => [...items].sort((a,b)=>a.time.localeCompare(b.time)||a.createdAt.localeCompare(b.createdAt));
+  function normalizeBackup(raw) {
+    if (!raw || raw.app!=='gokmen-berber' || ![1,2].includes(raw.version) || !Array.isArray(raw.appointments))
+      throw new Error('Bu dosya geçerli bir Gökmen Berber yedeği değil.');
+    if (raw.appointments.length > 50000) throw new Error('Yedek dosyasında çok fazla kayıt var.');
+    const ids=new Set(), result=[];
+    for (const item of raw.appointments) {
+      if (!item || typeof item!=='object') throw new Error('Yedek içinde bozuk bir kayıt var.');
+      const a=normalize(item);
+      if (!a.id || ids.has(a.id) || !a.name || !parseDate(a.date) || !Number.isFinite(minutes(a.time)) ||
+        !oldDurations.includes(a.duration) || minutes(a.time)+a.duration>1440 || (raw.version===2 && !isSlot(a.time) && !item.duration))
+        throw new Error('Yedek içinde geçersiz veya yinelenen kayıt var.');
+      ids.add(a.id); result.push(a);
+    }
+    return result;
+  }
+  return {OPEN,LAST,STEP,SLOT_TIMES,dateKey,parseDate,shiftDate,minutes,isSlot,normalize,validate,conflicts,occupant,sortAppointments,normalizeBackup};
+});
+
+</script>
+  <script>
+(() => {
+  'use strict';
+  const C=globalThis.GokmenCore;
+  const KEY='gokmen-berber-randevular-v1'; // Önceki sürümün kayıtları korunur.
+  const $=id=>document.getElementById(id);
+  const formatDay=new Intl.DateTimeFormat('tr-TR',{weekday:'long'});
+  const formatMonth=new Intl.DateTimeFormat('tr-TR',{month:'long'});
+  let selectedDate=C.dateKey(new Date()), appointments=[],editingId=null,deferredInstall=null,toastTimer=null;
+  const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const cap=s=>s.charAt(0).toLocaleUpperCase('tr-TR')+s.slice(1);
+  const uniqueId=()=>globalThis.crypto?.randomUUID?.()||`${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  const closeKeyboard=()=>{if(document.activeElement instanceof HTMLElement)document.activeElement.blur();};
+  function showToast(message,isError=false) {
+    const el=$('toast');el.textContent=message;el.classList.toggle('error',isError);el.classList.add('visible');
+    clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3600);
+  }
+  function load() {
+    try {
+      const raw=JSON.parse(localStorage.getItem(KEY)||'[]');
+      if(!Array.isArray(raw))throw new Error('not array');
+      appointments=raw.map(C.normalize).filter(a=>a.id&&a.name&&C.parseDate(a.date)&&Number.isFinite(C.minutes(a.time)));
+    }catch{appointments=[];showToast('Kayıtlar okunamadı. Önce yedekten geri yükle.',true);}
+  }
+  function persist(next) {
+    try{localStorage.setItem(KEY,JSON.stringify(next));appointments=next;return true;}
+    catch{showToast('Kayıtlar telefona kaydedilemedi. Boş alanı kontrol et.',true);return false;}
+  }
+  const phoneSVG='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7.2 3.9 2.6 3.2-1.5 2.2c1.2 2.7 3.3 4.7 6.3 6l2-1.5 3.4 2.4-1.7 3.4c-.4.8-1.3 1.1-2.2.9C9.5 18.8 5.4 14.5 3.4 7.4c-.2-.9.1-1.8.9-2.2l2.9-1.3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+  function renderSlot(time,a) {
+    if(!a) return `<button type="button" class="slot-card free" data-slot="${time}" aria-label="${time} boş, randevu ekle">
+      <span class="slot-time">${time}</span><span class="slot-content"><span class="slot-name free-name">Boş saat</span><span class="slot-help">Randevu eklemek için dokun</span></span><span class="slot-tag available">BOŞ</span><span class="slot-plus" aria-hidden="true">+</span>
+    </button>`;
+    const done=a.status==='done', phoneHref=String(a.phone).replace(/[^\d+]/g,'');
+    return `<article class="slot-card occupied ${done?'finished':''}" data-id="${escapeHTML(a.id)}" aria-label="${time} ${escapeHTML(a.name)} ${done?'bitti':'dolu'}">
+      <span class="slot-time">${time}</span><div class="slot-content"><strong class="slot-name">${escapeHTML(a.name)}</strong>${a.time!==time?`<span class="slot-help">Kayıt saati ${escapeHTML(a.time)}</span>`:a.notes?'<span class="slot-help">Not var</span>':''}</div><span class="slot-tag ${done?'completed':'busy'}">${done?'BİTTİ':'DOLU'}</span>
+      <div class="slot-actions">${phoneHref?`<a class="phone-link" href="tel:${escapeHTML(phoneHref)}" aria-label="${escapeHTML(a.name)} kişisini ara" title="Ara">${phoneSVG}</a>`:''}<button type="button" class="small-status-btn ${done?'undo-btn':'done-btn'}" data-action="toggle" data-id="${escapeHTML(a.id)}">${done?'Geri al':'✓ Bitir'}</button><button type="button" class="edit-btn" data-action="edit" data-id="${escapeHTML(a.id)}" aria-label="${escapeHTML(a.name)} randevusunu düzenle">Düzenle</button></div>
+    </article>`;
+  }
+  function render() {
+    const date=C.parseDate(selectedDate);
+    $('dateWeekday').textContent=formatDay.format(date).toLocaleUpperCase('tr-TR');
+    $('dateBig').innerHTML=`${date.getDate()} ${cap(formatMonth.format(date))} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+    $('dateYear').textContent=String(date.getFullYear());$('datePicker').value=selectedDate;
+    $('todayBtn').hidden=selectedDate===C.dateKey(new Date());
+    $('sectionHeading').textContent=selectedDate===C.dateKey(new Date())?'Bugünün saatleri':'Günün saatleri';
+    const day=appointments.filter(a=>a.date===selectedDate&&a.status!=='cancelled');
+    const slots=C.SLOT_TIMES.map(time=>({time,a:C.occupant(day,selectedDate,time)}));
+    const busy=slots.filter(s=>s.a).length,done=day.filter(a=>a.status==='done').length;
+    $('totalCount').textContent=String(busy).padStart(2,'0');
+    $('pendingCount').textContent=String(C.SLOT_TIMES.length-busy).padStart(2,'0');
+    $('doneCount').textContent=String(done).padStart(2,'0');
+    $('listCount').textContent=`${busy} / ${C.SLOT_TIMES.length} dolu`;
+    $('appointmentList').innerHTML=slots.map(s=>renderSlot(s.time,s.a)).join('');
+  }
+  function firstAvailable(date,excludeId=null) {
+    const now=new Date(),today=C.dateKey(now),nowMinutes=now.getHours()*60+now.getMinutes();
+    const ordered=C.SLOT_TIMES.filter(t=>date!==today||C.minutes(t)>=nowMinutes);
+    return [...ordered,...C.SLOT_TIMES].find(t=>!C.conflicts(appointments,{date,time:t,duration:30},excludeId))||'';
+  }
+  function refreshTimeOptions(preferred) {
+    const date=$('formDate').value, currentId=editingId;
+    $('formTime').innerHTML=C.SLOT_TIMES.map(t=>{
+      const busy=C.conflicts(appointments,{date,time:t,duration:30},currentId);
+      return `<option value="${t}" ${busy?'disabled':''}>${t}${busy?' — Dolu':''}</option>`;
+    }).join('');
+    const available=preferred&&[...$('formTime').options].some(o=>o.value===preferred&&!o.disabled);
+    $('formTime').value=available?preferred:firstAvailable(date,currentId);
+    $('fullDayHint').hidden=!!$('formTime').value;
+  }
+  function openForm(id=null,preselectedTime=null) {
+    editingId=id;const a=id?appointments.find(item=>item.id===id):null;
+    if(id&&!a)return;
+    $('appointmentForm').reset();$('formError').hidden=true;
+    $('formTitle').textContent=a?'Randevuyu düzenle':'Yeni randevu';
+    $('saveBtn').innerHTML=a?'DEĞİŞİKLİKLERİ KAYDET <span aria-hidden="true">→</span>':'RANDEVUYU KAYDET <span aria-hidden="true">→</span>';
+    $('deleteBtn').hidden=!a||a.status==='cancelled';$('customerName').value=a?.name||'';
+    $('formDate').value=a?.date||selectedDate;$('phone').value=a?.phone||'';$('notes').value=a?.notes||'';
+    // Eski sürümde 15 dakikalık başlangıç saati varsa, onu güncellerken uygun bir slot seçilir.
+    refreshTimeOptions(C.isSlot(a?.time)?a.time:preselectedTime);
+    $('formOverlay').hidden=false;document.body.classList.add('modal-open');
+  }
+  function closeModal(which) {
+    $(which==='form'?'formOverlay':'settingsOverlay').hidden=true;closeKeyboard();
+    if($('formOverlay').hidden&&$('settingsOverlay').hidden)document.body.classList.remove('modal-open');
+  }
+  function saveForm(event) {
+    event.preventDefault();const old=appointments.find(a=>a.id===editingId);
+    const draft=C.normalize({id:old?.id||uniqueId(),name:$('customerName').value,date:$('formDate').value,time:$('formTime').value,
+      duration:30,phone:$('phone').value,notes:$('notes').value,status:old?.status||'pending',createdAt:old?.createdAt||new Date().toISOString()});
+    const error=C.validate(appointments,draft,editingId);
+    if(error){$('formError').textContent=error;$('formError').hidden=false;return;}
+    const next=editingId?appointments.map(a=>a.id===editingId?draft:a):[...appointments,draft];
+    if(!persist(next))return;
+    selectedDate=draft.date;closeModal('form');render();showToast(editingId?'Randevu güncellendi.':'Randevu kaydedildi.');
+  }
+  function cancelAppointment() {
+    if(!editingId)return;const old=appointments.find(a=>a.id===editingId);
+    if(!old||!confirm(`${old.name} adlı müşterinin randevusunu iptal etmek istiyor musun?`))return;
+    if(!persist(appointments.map(a=>a.id===editingId?{...a,status:'cancelled'}:a)))return;
+    closeModal('form');render();showToast('Randevu iptal edildi, saat boşaldı.');
+  }
+  function toggleDone(id) {
+    const old=appointments.find(a=>a.id===id);if(!old||old.status==='cancelled')return;
+    const status=old.status==='done'?'pending':'done';
+    if(persist(appointments.map(a=>a.id===id?{...a,status}:a))){render();showToast(status==='done'?'Randevu tamamlandı.':'Randevu beklemeye alındı.');}
+  }
+  const getBackup=()=>JSON.stringify({app:'gokmen-berber',version:2,exportedAt:new Date().toISOString(),appointments},null,2);
+  function downloadBackup() {
+    const blob=new Blob([getBackup()],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+    link.href=url;link.download=`gokmen-berber-yedek-${C.dateKey(new Date())}.json`;
+    document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),6000);
+    showToast('Yedek indirme işlemi başlatıldı. Dosyayı güvenli bir yerde sakla.');
+  }
+  async function copyBackup(){try{if(!navigator.clipboard?.writeText)throw Error('clipboard');await navigator.clipboard.writeText(getBackup());showToast('Yedek metni kopyalandı. Güvenli bir yere kaydet.');}catch{showToast('Kopyalama izin verilmedi. Yedek dosyasını indir.',true);}}
+  async function importBackup(event){
+    const file=event.target.files?.[0];event.target.value='';if(!file)return;
+    if(file.size>15000000){showToast('Yedek dosyası çok büyük.',true);return;}
+    try{
+      const restored=C.normalizeBackup(JSON.parse(await file.text()));
+      if(!confirm(`Bu dosyada ${restored.length} randevu var. Telefondaki ${appointments.length} mevcut kaydın tamamı değiştirilecek. Devam edilsin mi?`))return;
+      if(persist(restored)){selectedDate=C.dateKey(new Date());closeModal('settings');render();showToast(`${restored.length} randevu geri yüklendi.`);}
+    }catch(error){showToast(error.message||'Yedek açılamadı.',true);}
+  }
+  function updateClock(){$('liveClock').textContent=new Intl.DateTimeFormat('tr-TR',{hour:'2-digit',minute:'2-digit'}).format(new Date());}
+  function init(){
+    load();render();updateClock();setInterval(updateClock,30000);
+    $('prevDay').addEventListener('click',()=>{selectedDate=C.shiftDate(selectedDate,-1);render();});
+    $('nextDay').addEventListener('click',()=>{selectedDate=C.shiftDate(selectedDate,1);render();});
+    $('todayBtn').addEventListener('click',()=>{selectedDate=C.dateKey(new Date());render();});
+    $('datePickBtn').addEventListener('click',()=>{const input=$('datePicker');if(input.showPicker)input.showPicker();else input.click();});
+    $('datePicker').addEventListener('change',event=>{if(C.parseDate(event.target.value)){selectedDate=event.target.value;render();}});
+    $('newBtn').addEventListener('click',()=>openForm());
+    $('formClose').addEventListener('click',()=>closeModal('form'));
+    $('formDate').addEventListener('change',()=>refreshTimeOptions($('formTime').value));
+    $('appointmentForm').addEventListener('submit',saveForm);
+    $('deleteBtn').addEventListener('click',cancelAppointment);
+    $('settingsBtn').addEventListener('click',()=>{$('settingsOverlay').hidden=false;document.body.classList.add('modal-open');});
+    $('settingsClose').addEventListener('click',()=>closeModal('settings'));
+    document.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',()=>closeModal(el.dataset.close)));
+    $('appointmentList').addEventListener('click',event=>{
+      const btn=event.target.closest('[data-action]');
+      if(btn){btn.dataset.action==='edit'?openForm(btn.dataset.id):toggleDone(btn.dataset.id);return;}
+      if(event.target.closest('a'))return;
+      const slot=event.target.closest('[data-slot]');if(slot){openForm(null,slot.dataset.slot);return;}
+      const card=event.target.closest('[data-id]');if(card)openForm(card.dataset.id);
+    });
+    $('exportBtn').addEventListener('click',downloadBackup);$('copyBtn').addEventListener('click',copyBackup);
+    $('importBtn').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',importBackup);
+    $('installBtn').addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('installBtn').hidden=true;});
+    window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('installBtn').hidden=false;});
+    window.addEventListener('appinstalled',()=>{$('installBtn').hidden=true;});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeModal('form');closeModal('settings');}});
+    if('serviceWorker' in navigator&&['https:','http:'].includes(location.protocol))Promise.resolve();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+
+</script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M7 20.5 21 6.5M6.7 7a3 3 0 1 0 4.25 4.25L20.5 21M6.7 21a3 3 0 1 0 4.25-4.25L20.5 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7" cy="7" r=".8" fill="currentColor"/><circle cx="7" cy="21" r=".8" fill="currentColor"/></svg></div>
+        <div><div class="brand-overline">RANDEVU DEFTERİ</div><div class="brand-name">GÖKMEN <span>BERBER</span></div></div>
+      </div>
+      <button class="icon-button settings-button" id="settingsBtn" aria-label="Ayarlar ve yedekleme" title="Ayarlar ve yedekleme"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 14.2 21 12l-1.6-2.2-.1-2.7-2.7-.5L14.7 4 12 4.9 9.3 4 7.4 6.6l-2.7.5-.1 2.7L3 12l1.6 2.2.1 2.7 2.7.5L9.3 20l2.7-.9 2.7.9 1.9-2.6 2.7-.5.1-2.7Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></button>
+    </header>
+    <main>
+      <div class="page-eyebrow"><span class="live-dot"></span> GÜNLÜK TAKVİM <span class="eyebrow-line"></span> <span id="liveClock" class="clock"></span></div>
+      <section class="hero" aria-label="Seçili gün">
+        <div class="date-controls">
+          <button class="circle-nav" id="prevDay" aria-label="Önceki gün"><svg viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></svg></button>
+          <button class="date-display" id="datePickBtn" aria-label="Tarih seç"><span id="dateWeekday" class="date-weekday">CUMA</span><span class="date-big" id="dateBig">25 Eylül <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span><span id="dateYear" class="date-year">2026</span></button>
+          <button class="circle-nav" id="nextDay" aria-label="Sonraki gün"><svg viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7"/></svg></button>
+        </div>
+        <input type="date" class="visually-hidden-date" id="datePicker" aria-label="Gün seç">
+        <button class="today-btn" id="todayBtn" hidden>Bugüne dön <span aria-hidden="true">↗</span></button>
+      </section>
+      <section class="stats" aria-label="Günlük özet">
+        <div class="stat-card"><div class="stat-label">DOLU</div><div class="stat-value" id="totalCount">00</div><div class="stat-foot">saat aralığı</div></div>
+        <div class="stat-card"><div class="stat-label">BOŞ</div><div class="stat-value" id="pendingCount">00</div><div class="stat-foot">saat aralığı</div></div>
+        <div class="stat-card accent-card"><div class="stat-label">BİTEN</div><div class="stat-value" id="doneCount">00</div><div class="stat-foot">tamamlandı</div></div>
+      </section>
+      <section class="appointments-section" aria-label="Randevular">
+        <div class="section-head"><div><div class="section-eyebrow">09:00 — 22:00 • 30 DAKİKALIK ARALIKLAR</div><h1 id="sectionHeading">Randevular</h1></div><span id="listCount" class="count-badge">0 kayıt</span></div>
+        <p class="schedule-tip">Boş bir saate dokunarak doğrudan o saate randevu ekleyebilirsin.</p>
+        <div id="appointmentList" class="appointment-list" aria-live="polite"></div>
+      </section>
+      <div class="bottom-space"></div>
+    </main>
+    <div class="bottom-action"><button id="newBtn" class="primary-button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> YENİ RANDEVU EKLE</button></div>
+  </div>
+
+  <div class="overlay" id="formOverlay" hidden>
+    <div class="sheet-backdrop" data-close="form"></div>
+    <section class="sheet form-sheet" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+      <div class="sheet-grab"></div>
+      <div class="sheet-header"><div><div class="sheet-kicker">GÖKMEN BERBER</div><h2 id="formTitle">Yeni randevu</h2></div><button class="close-btn" id="formClose" aria-label="Kapat">×</button></div>
+      <form id="appointmentForm" novalidate>
+        <div class="form-fields">
+          <label class="field"><span>Müşteri adı <strong>*</strong></span><input id="customerName" name="customerName" type="text" maxlength="70" autocomplete="off" placeholder="Ad soyad" required></label>
+          <div class="field-row"><label class="field"><span>Tarih <strong>*</strong></span><input id="formDate" name="date" type="date" required></label><label class="field"><span>Saat <strong>*</strong></span><select id="formTime" name="time" required></select></label></div>
+          <p class="time-hint">09:00–22:00 arası yarım saatlik saatler. Dolu saatler seçilemez.</p>
+          <p class="form-error" id="fullDayHint" hidden>Bu gün için boş saat kalmadı.</p>
+          <label class="field"><span>Telefon <small>(isteğe bağlı)</small></span><input id="phone" name="phone" type="tel" inputmode="tel" maxlength="24" placeholder="05xx xxx xx xx"></label>
+          <label class="field"><span>Not <small>(isteğe bağlı)</small></span><textarea id="notes" name="notes" rows="2" maxlength="250" placeholder="Müşteriye dair kısa not..."></textarea></label>
+          <div id="formError" class="form-error" role="alert" hidden></div>
+        </div>
+        <div class="sheet-actions"><button type="button" class="secondary-button" id="deleteBtn" hidden>Randevuyu iptal et</button><button type="submit" class="primary-button" id="saveBtn">RANDEVUYU KAYDET <span aria-hidden="true">→</span></button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="overlay" id="settingsOverlay" hidden>
+    <div class="sheet-backdrop" data-close="settings"></div>
+    <section class="sheet settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="sheet-grab"></div><div class="sheet-header"><div><div class="sheet-kicker">TERCİHLER</div><h2 id="settingsTitle">Ayarlar</h2></div><button class="close-btn" id="settingsClose" aria-label="Kapat">×</button></div>
+      <div class="settings-content">
+        <div class="settings-group-title">VERİLERİNİ KORU</div>
+        <p class="settings-description">Randevular bu telefonda saklanır. Telefon değiştirirken veya uygulamayı silmeden önce mutlaka yedek al.</p>
+        <button id="exportBtn" class="settings-item"><span class="setting-icon">↥</span><span><strong>Yedek dosyası indir</strong><small>Tüm randevuları JSON dosyasına kaydet</small></span><span class="item-arrow">›</span></button>
+        <button id="copyBtn" class="settings-item"><span class="setting-icon">▤</span><span><strong>Yedek metnini kopyala</strong><small>İndirme çalışmazsa alternatif</small></span><span class="item-arrow">›</span></button>
+        <button id="importBtn" class="settings-item"><span class="setting-icon">↧</span><span><strong>Yedeği geri yükle</strong><small>Önceden kaydedilmiş dosyayı seç</small></span><span class="item-arrow">›</span></button><input id="importFile" type="file" accept=".json,application/json" hidden>
+        <div class="settings-group-title install-title">CİHAZDA KULLANIM</div>
+        <p class="settings-description" id="installHelp">Bu uygulama randevularını bu telefonun hafızasında tutar. Telefonu değiştirmeden veya uygulamayı kaldırmadan önce yedek al.</p>
+        <button class="outline-button" id="installBtn" hidden>Uygulamayı yükle</button>
+        <div class="settings-note"><span class="live-dot"></span> Bu defter yalnızca bu cihazda tutulur; otomatik bulut eşitleme yoktur.</div>
+      </div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
